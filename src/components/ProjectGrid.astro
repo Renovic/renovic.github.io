@@ -1,0 +1,49 @@
+---
+import ProjectCard from './ProjectCard.astro';
+import Cuprite_low from '../assets/project-images/Cuprite_low.png';
+import Cuprite_toolhead from '../assets/project-images/Cuprite_toolhead.png';
+import Speed_test from '../assets/project-images/Speed_test.gif';
+import Printing from '../assets/project-images/Printing.gif';
+import Crossover_low from '../assets/project-images/Crossover_low.png';
+---
+
+<div class="project-grid">
+    <ProjectCard name="Cuprite" images={[Cuprite_low, Printing, Speed_test, Cuprite_toolhead]} direction="right" year="2026" link="https://github.com/Renovic/Cuprite" link_text="View Github">
+        A High-Speed 160mm^3 Corexy 3D printer.
+        <ul>
+            <li>Rigid, Fast Kinematics</li>
+            <li>Com-Optimized Toolhead</li>
+            <li>Configurable Aesthetic Panels</li>
+            <li>Sponsored by 5 companies</li>
+        </ul>
+    </ProjectCard>
+    <ProjectCard name="Crossover" images={[Crossover_low]} direction="left" year="2026" link="https://github.com/Renovic/Crossover-MMU" link_text="View Project">
+        A Crossover MMU project.
+    </ProjectCard>
+    <ProjectCard name="Project Three" images={[Cuprite_low, Cuprite_toolhead]} direction="right" year="2026" link="#" link_text="View Project">
+        Description for the Project Three project.
+    </ProjectCard>
+    <ProjectCard name="Project Four" images={[Crossover_low]} direction="left" year="2026" link="#" link_text="View Project">
+        Description for the Project Four project.
+    </ProjectCard>
+    <ProjectCard name="Project Five" images={[Cuprite_low]} direction='right' year='2026' link='#' link_text='View Project'>
+        Description for the Project Five project.
+    </ProjectCard>
+</div>
+
+<style>
+    .project-grid {
+        --vertical-overlap: 50px;
+        --horizontal-gap: 5vw;
+    }
+
+    .project-grid {
+        display: grid;
+        width: calc(100% - 50px);
+        box-sizing: border-box;
+        grid-template-columns: 1fr;
+        row-gap: 0;
+        margin-inline: auto;
+    }
+
+</style>

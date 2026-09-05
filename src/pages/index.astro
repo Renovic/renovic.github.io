@@ -1,11 +1,127 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Triangles from '../layouts/Triangles.astro';
+import ProjectGrid from '../components/ProjectGrid.astro';
+import GithubSvg from '../assets/svgs/GitHub_Invertocat_White_Clearspace.svg';
+import EmailSvg from '../assets/svgs/Email.svg';
+
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<Triangles>
+	<div class="intro">
+		<h1 id="hi">
+			Hi, I'm <br>
+			<span class="text-accent">Neel</span>
+		</h1>
+
+		<p id="about">
+			I'm a computer science major at Purdue who spends way too much time designing hardware
+			<br />
+			<a href="https://github.com/Renovic" class="svg-link-button">
+				<GithubSvg width={40} height={40} />
+			</a>
+
+			<a href="mailto:neerav.poluri@gmail.com" class="svg-link-button">
+				<EmailSvg width={40} height={40} />
+			</a>
+			<br />
+
+			Check out some of my projects below:
+		</p>
+	</div>
+
+	<div class="projects">
+		<ProjectGrid />
+	</div>
+</Triangles>
+
+<style>
+	.intro {
+		position: relative;
+		width: min(100% - 50px, 1125px);
+		top: 100px;
+	}
+	#hi {
+		font-family: var(--font-orbitron);
+		font-size: 2rem;
+		text-align: left;
+		font-weight: 700;
+		color: #fff;
+	}
+	#about {
+		font-family: var(--font-cascadia-code);
+		font-size: 1.5rem;
+		text-align: left;
+		color: #fff;
+		width: 400px
+	}
+	
+	.projects {
+		width: min(100%, 1200px);
+		justify-self: center;
+		align-self: start;
+		position: relative;
+		margin-top: 100px;
+		margin-bottom: 100px;
+	}
+
+	.text-accent {
+		position: relative;
+		display: inline-block;
+		overflow: hidden;
+		color: transparent;
+		font-size: 5rem;
+		isolation: isolate;
+		animation: showAccentText 1.4s forwards;
+	}
+
+	.text-accent::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: #27C7E5;
+		transform-origin: left;
+		animation: revealAccent 1.4s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+		z-index: 1;
+	}
+
+	@keyframes revealAccent {
+		0% {
+			transform: scaleX(0);
+		}
+
+		40% {
+			transform: scaleX(1);
+		}
+
+		100% {
+			transform: translateX(-100%);
+		}
+	}
+
+	@keyframes showAccentText {
+		0%,
+		45% {
+			color: transparent;
+		}
+
+		46%,
+		100% {
+			color: #27C7E5;
+		}
+	}
+
+	.svg-link-button {
+		display: inline-block;
+		fill: white;
+		margin-right: 10px;
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+	
+	.svg-link-button:hover {
+		fill: #afafaf;
+	}
+</style>
