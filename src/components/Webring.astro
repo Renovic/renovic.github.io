@@ -1,0 +1,41 @@
+---
+import PHacker from '../assets/svgs/phacker.svg';
+---
+
+<nav class="webring" aria-label="Webring navigation">
+  <a href="https://ring.purduehackers.com/prev" aria-label="Previous">
+    &#9664;
+  </a>
+  <a href="https://ring.purduehackers.com/" aria-label="Purdue Hackers Webring">
+    <PHacker width={32} height={32} />
+  </a>
+  <a href="https://ring.purduehackers.com/next" aria-label="Next">
+    &#9654;
+  </a>
+</nav>
+
+<style>
+    .webring {
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        z-index: 10;
+
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .webring a {
+        display: inline-flex;
+        align-items: center;
+        color: white;
+        fill: white;
+        text-decoration: none;
+    }
+
+    .webring a:hover {
+        fill: #afafaf;
+        color: #afafaf;
+    }
+</style>
