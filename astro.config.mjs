@@ -3,8 +3,7 @@ import { defineConfig, fontProviders } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://renovic.github.io',
-    base: '/website',
+    site: 'https://neels.page',
     fonts: [
         {
             provider: fontProviders.fontsource(),
