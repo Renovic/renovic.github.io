@@ -30,7 +30,7 @@ const firstImage = carouselImages[0];
 >
     <div class="project-media">
         <button class="project-trigger" type="button" aria-expanded="false">
-        {firstImage && <Image src={firstImage} alt={name} class="project-image" />}
+        {firstImage && <Image src={firstImage} alt={name} class="project-image" loading="lazy" decoding="async"/>}
         <span class="project-name">{name}</span>
         </button>
 
