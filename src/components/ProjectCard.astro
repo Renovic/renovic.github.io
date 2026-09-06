@@ -225,8 +225,45 @@ const firstImage = carouselImages[0];
         min-width: 0;
         display: flex;
         flex-direction: column;
-        padding: 30px;
+        padding: 8px;
+        padding-inline-start: 25px;
         box-sizing: border-box;
+    }
+
+    .project-card.card-left.is-open .project-details {
+        animation: slide-details-from-left 350ms ease both;
+    }
+
+    .project-card.card-right.is-open .project-details {
+        animation: slide-details-from-right 350ms ease both;
+    }
+
+    .project-card.is-open .project-details[hidden] {
+        display: none;
+    }
+
+    @keyframes slide-details-from-left {
+        from {
+        opacity: 0;
+        transform: translateX(-24px);
+        }
+
+        to {
+        opacity: 1;
+        transform: translateX(0);
+        }
+    }
+
+    @keyframes slide-details-from-right {
+        from {
+        opacity: 0;
+        transform: translateX(24px);
+        }
+
+        to {
+        opacity: 1;
+        transform: translateX(0);
+        }
     }
 
     .project-details h2 {
@@ -259,7 +296,7 @@ const firstImage = carouselImages[0];
     .project-details .slot-container {
         color: #ffffff;
         font-family: var(--font-cascadia-code);
-        font-size: 1rem;
+        font-size: clamp(0.875rem, 1.6vw, 1.2rem);
     }
 
     .project-details-footer {
@@ -463,6 +500,7 @@ const firstImage = carouselImages[0];
         const carouselImages = card.dataset.carouselImages?.split('|').filter(Boolean) ?? [];
         const indicators = card.querySelectorAll<HTMLButtonElement>('.carousel-indicator');
         let imageIndex = 0;
+        let detailsTimeout: ReturnType<typeof setTimeout> | undefined;
 
         trigger?.addEventListener('click', () => {
         const isOpen = card.classList.toggle('is-open');
@@ -470,7 +508,15 @@ const firstImage = carouselImages[0];
         trigger.setAttribute('aria-expanded', String(isOpen));
 
         if (details) {
-            details.hidden = !isOpen;
+            clearTimeout(detailsTimeout);
+
+            if (isOpen) {
+            detailsTimeout = setTimeout(() => {
+                details.hidden = false;
+            }, 350);
+            } else {
+            details.hidden = true;
+            }
         }
         });
 

@@ -5,10 +5,24 @@ import Cuprite_toolhead from '../assets/project-images/Cuprite_toolhead.png';
 import Speed_test from '../assets/project-images/Speed_test.gif';
 import Printing from '../assets/project-images/Printing.gif';
 import Crossover_low from '../assets/project-images/Crossover_low.png';
+import Crossover_above from '../assets/project-images/Crossover_above.png';
+import ML from '../assets/project-images/ML.png';
+import Gantry from '../assets/project-images/gantry.png';
+import Qter from '../assets/project-images/qter.png';
+import Qter_Moves from '../assets/project-images/Qter_Moves.gif';
+import FRC_Side from '../assets/project-images/FRC_Side.png';
+import FRC_Auto from '../assets/project-images/FRC_Auto.gif';
+import FRC_Scoring from '../assets/project-images/FRC_Scoring.png';
+import Slicer_1 from '../assets/project-images/Slicer_1.png';
+import Slicer_2 from '../assets/project-images/Slicer_2.png';
+import PBC_Toolhead from '../assets/project-images/PBC_Toolhead.png';
+import Toolhead from '../assets/project-images/Toolhead.png';
+import BoxCart_Gantry from '../assets/project-images/BoxCart_Gantry.png';
+import Ender from '../assets/project-images/Ender.png';
 ---
 
 <div class="project-grid">
-    <ProjectCard name="Cuprite" images={[Cuprite_low, Printing, Speed_test, Cuprite_toolhead]} direction="right" year="2026" link="https://github.com/Renovic/Cuprite" link_text="View Github">
+    <ProjectCard name="Cuprite" images={[Cuprite_low, Printing, Speed_test, Cuprite_toolhead]} direction="right" year="2025-26" link="https://github.com/Renovic/Cuprite" link_text="View Github">
         A High-Speed 160mm^3 Corexy 3D printer.
         <ul>
             <li>Rigid, Fast Kinematics</li>
@@ -16,18 +30,65 @@ import Crossover_low from '../assets/project-images/Crossover_low.png';
             <li>Configurable Aesthetic Panels</li>
             <li>Sponsored by 5 companies</li>
         </ul>
+
+        Designed from scratch in Fusion 360 for high performance printing. Utilizing Kalico firmware and custom pcb accelerometer for homing, bed meshing and resonance calibration.
     </ProjectCard>
-    <ProjectCard name="Crossover" images={[Crossover_low]} direction="left" year="2026" link="https://github.com/Renovic/Crossover-MMU" link_text="View Project">
-        A Crossover MMU project.
+    <ProjectCard name="Crossover" images={[Crossover_low, Crossover_above]} direction="left" year="2026" link="https://github.com/Renovic/Crossover-MMU" link_text="View Project">
+        Multi-Material unit (MMU) with outputs for several 3D printers.
+        <ul>
+            <li>Configurable filament lanes</li>
+            <li>Low-cost bom</li>
+            <li>Easy scalability</li>
+        </ul>
+
+        First MMU that outputs to multiple 3D printers simultaneously, allowing for automatic material switching and multi-material printing.
     </ProjectCard>
-    <ProjectCard name="Project Three" images={[Cuprite_low, Cuprite_toolhead]} direction="right" year="2026" link="#" link_text="View Project">
-        Description for the Project Three project.
+    <ProjectCard name="Autonomous Drone Mapping" images={[ML]} direction="right" year="2026" link="https://github.com/Nathan0108/auto-drone-mapping" link_text="View Project">
+        A simulation-first autonomous drone pipeline for exploring and mapping environments.
+        <ul>
+            <li>Simulation: Isaac Sim & Pegasus Sim</li>
+            <li>SLAM: Fast-LIO2, Extended Kalman Filter and RTAB-Map</li>
+            <li>RL policy for autonomous navigation</li>
+        </ul>
+
+        Made with an Ml@Purdue Project team
+
     </ProjectCard>
-    <ProjectCard name="Project Four" images={[Crossover_low]} direction="left" year="2026" link="#" link_text="View Project">
-        Description for the Project Four project.
+    <ProjectCard name="3-axis Robotic Gantry" images={[Gantry]} direction="left" year="2026" link="https://github.com/nekiwo/StarkHacks2026" link_text="View Project">
+        A 3-axis robotic gantry and gripper system built to clean desks.
+        <ul>
+            <li>Underactuated robotic gripper for adaptable grasping</li>
+            <li>Yolo vision model for object detection</li>
+            <li>Klipper firmware for motion control</li>
+        </ul>
+        Built during a 36-hour hackathon.
     </ProjectCard>
-    <ProjectCard name="Project Five" images={[Cuprite_low]} direction='right' year='2026' link='#' link_text='View Project'>
-        Description for the Project Five project.
+    <ProjectCard name="Qter Robot" images={[Qter, Qter_Moves]} direction="right" year="2025-26" link="https://github.com/qter-project" link_text="View Project">
+        Rubik's cube robot for the Qter project, a computer architecture that performs computations using Rubik's cubes. 
+        Optimized for viewability and turn reliability.
+
+    </ProjectCard>
+    <ProjectCard name="FRC" images={[FRC_Side, FRC_Auto, FRC_Scoring]} direction='left' year='2022-25' link='https://github.com/titan2022/FRC-2025-JAVA' link_text='View Project'>
+        2025 FRC competition robot.
+        Designed/Programmed the following:
+        <ul>
+            <li>2-Stage Elevator</li>
+            <li>Game Piece Intake Funnel</li>
+            <li>Pid systems & tuning</li>
+            <li>Autonomous Routines</li>
+        </ul>
+
+        Competed in the FIRST Championship
+    </ProjectCard>
+    <ProjectCard name="FDM Slicer" images={[Slicer_1, Slicer_2]} direction="right" year="2025" link="https://github.com/Privnoval016/3DPrintingSlicer" link_text="View Project">
+        A slicer for 3D printing built from scratch in Python. It slices the mesh into layers, generates perimeters and gyroid infill pattern, and renders the resulting G-code for inspecting.
+        Made with shapely, numpy, and Qt.
+        <br /> <br />
+        Built during a 24-hour hackathon.
+    </ProjectCard>
+    <ProjectCard name="3D Printer Hardware Designs" images={[PBC_Toolhead, Toolhead, BoxCart_Gantry, Ender]} direction="left" year="2022-26" link="https://github.com/Renovic" link_text="View Project">
+        A collection of 3D Printer hardware designs created over the years.
+        Primarily focused on improving speed and rigidity with low-cost upgades.
     </ProjectCard>
 </div>
 
