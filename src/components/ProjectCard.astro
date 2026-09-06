@@ -29,9 +29,19 @@ const firstImage = carouselImages[0];
     data-carousel-images={carouselImages.map((image) => image.src).join('|')}
 >
     <div class="project-media">
+        <span class="image-loader" aria-hidden="true"></span>
+
         <button class="project-trigger" type="button" aria-expanded="false">
-        {firstImage && <Image src={firstImage} alt={name} class="project-image" loading="lazy" decoding="async"/>}
-        <span class="project-name">{name}</span>
+            {firstImage && (
+                <Image
+                    src={firstImage}
+                    alt={name}
+                    class="project-image is-loading"
+                    loading="lazy"
+                    decoding="async"
+                />
+            )}
+            <span class="project-name">{name}</span>
         </button>
 
         {carouselImages.length > 1 && (
@@ -376,6 +386,46 @@ const firstImage = carouselImages[0];
         flex-direction: row;
     }
 
+    .image-loader {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        display: grid;
+        place-items: center;
+        border-radius: 20px;
+        background: #141414;
+    }
+
+    .image-loader::after {
+        width: 32px;
+        height: 32px;
+        border: 3px solid rgb(255 255 255 / 0.25);
+        border-top-color: #27c7e5;
+        border-radius: 50%;
+        content: "";
+        animation: spin 0.8s linear infinite;
+    }
+
+    .project-image {
+        position: relative;
+        z-index: 2;
+        opacity: 1;
+    }
+
+    .project-image.is-loading {
+        opacity: 0;
+    }
+
+    .project-media:not(:has(.project-image.is-loading)) .image-loader {
+        display: none;
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
     .carousel-button {
         display: none;
         position: absolute;
@@ -502,10 +552,34 @@ const firstImage = carouselImages[0];
         let imageIndex = 0;
         let detailsTimeout: ReturnType<typeof setTimeout> | undefined;
 
+        const loader = card.querySelector<HTMLElement>('.image-loader');
+            
+        const finishLoading = () => {
+            image?.classList.remove('is-loading');
+            loader?.setAttribute('hidden', '');
+        };
+        
+        image?.addEventListener('load', finishLoading);
+        
+        if (image?.complete) {
+            finishLoading();
+        }
+
+        const preloadCarouselImages = () => {
+            carouselImages.forEach((src) => {
+                const preload = new window.Image();
+                preload.src = src;
+            });
+        };
+
         trigger?.addEventListener('click', () => {
         const isOpen = card.classList.toggle('is-open');
 
         trigger.setAttribute('aria-expanded', String(isOpen));
+
+        if (isOpen) {
+            preloadCarouselImages();
+        }
 
         if (details) {
             clearTimeout(detailsTimeout);
@@ -521,22 +595,22 @@ const firstImage = carouselImages[0];
         });
 
         const showImage = (nextIndex: number, direction: 'next' | 'prev') => {
-        if (!image || carouselImages.length < 2) return;
+            if (!image || carouselImages.length < 2) return;
 
-        imageIndex = (nextIndex + carouselImages.length) % carouselImages.length;
+            imageIndex = (nextIndex + carouselImages.length) % carouselImages.length;
 
-        image.classList.remove('slide-next', 'slide-prev');
-        void image.offsetWidth;
+            image.classList.remove('slide-next', 'slide-prev');
+            void image.offsetWidth;
 
-        image.src = carouselImages[imageIndex];
-        image.classList.add(direction === 'next' ? 'slide-next' : 'slide-prev');
+            image.src = carouselImages[imageIndex];
+            image.classList.add(direction === 'next' ? 'slide-next' : 'slide-prev');
 
-        indicators.forEach((indicator, index) => {
-            const isActive = index === imageIndex;
+            indicators.forEach((indicator, index) => {
+                const isActive = index === imageIndex;
 
-            indicator.classList.toggle('is-active', isActive);
-            indicator.setAttribute('aria-selected', String(isActive));
-        });
+                indicator.classList.toggle('is-active', isActive);
+                indicator.setAttribute('aria-selected', String(isActive));
+            });
         };
 
         previousButton?.addEventListener('click', (event) => {
