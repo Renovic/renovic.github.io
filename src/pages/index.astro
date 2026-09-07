@@ -54,10 +54,10 @@ import Webring from '../components/Webring.astro';
 	}
 	#about {
 		font-family: var(--font-cascadia-code);
-		font-size: 1.5rem;
+		font-size: clamp(1rem, 2vw, 1.5rem);
 		text-align: left;
 		color: #fff;
-		width: 400px
+		width: 400px;
 	}
 	
 	.projects {
@@ -125,5 +125,11 @@ import Webring from '../components/Webring.astro';
 	
 	.svg-link-button:hover {
 		fill: #afafaf;
+	}
+
+	@media (max-width: 600px) {
+        #about {
+            width: 100%;
+        }
 	}
 </style>

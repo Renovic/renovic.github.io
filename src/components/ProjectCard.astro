@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import TriangleArrowLeft from '../assets/svgs/TriangleArrow-Left.svg';
+import TriangleArrowRight from '../assets/svgs/TriangleArrow-Right.svg';
 
 interface Props {
     name: string;
@@ -47,10 +49,10 @@ const firstImage = carouselImages[0];
         {carouselImages.length > 1 && (
         <>
             <button class="carousel-button carousel-prev" type="button" aria-label={`Previous ${name} image`}>
-            &#9664;
+            <TriangleArrowLeft class="triangle-arrow" aria-hidden="true" width={14} height={16} />
             </button>
             <button class="carousel-button carousel-next" type="button" aria-label={`Next ${name} image`}>
-            &#9654;
+            <TriangleArrowRight class="triangle-arrow" aria-hidden="true" width={14} height={16} />
             </button>
             <div class="carousel-indicators" role="tablist" aria-label={`${name} gallery`}>
             {carouselImages.map((_, index) => (
@@ -431,6 +433,7 @@ const firstImage = carouselImages[0];
         position: absolute;
         top: 50%;
         z-index: 3;
+        place-items: center;
         transform: translateY(-50%);
         width: 42px;
         height: 42px;
@@ -441,8 +444,15 @@ const firstImage = carouselImages[0];
         cursor: pointer;
     }
 
-    .project-card.is-open .carousel-button {
+    .triangle-arrow {
         display: block;
+        width: 14px;
+        height: 16px;
+        filter: invert(1);
+    }
+
+    .project-card.is-open .carousel-button {
+        display: grid;
     }
 
     .carousel-button:hover {

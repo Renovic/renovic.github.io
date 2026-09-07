@@ -1,16 +1,18 @@
 ---
 import PHacker from '../assets/svgs/phacker.svg';
+import TriangleArrowLeft from '../assets/svgs/TriangleArrow-Left.svg';
+import TriangleArrowRight from '../assets/svgs/TriangleArrow-Right.svg';
 ---
 
 <nav class="webring" aria-label="Webring navigation">
   <a href="https://ring.purduehackers.com/prev" aria-label="Previous">
-    &#9664;
+    <TriangleArrowLeft class="triangle-arrow" aria-hidden="true" width={14} height={16} />
   </a>
   <a href="https://ring.purduehackers.com/" aria-label="Purdue Hackers Webring">
     <PHacker width={32} height={32} />
   </a>
   <a href="https://ring.purduehackers.com/next" aria-label="Next">
-    &#9654;
+    <TriangleArrowRight class="triangle-arrow" aria-hidden="true" width={14} height={16} />
   </a>
 </nav>
 
@@ -37,5 +39,12 @@ import PHacker from '../assets/svgs/phacker.svg';
     .webring a:hover {
         fill: #afafaf;
         color: #afafaf;
+    }
+
+    .triangle-arrow {
+      display: block;
+      width: 14px;
+      height: 16px;
+      filter: invert(1);
     }
 </style>
