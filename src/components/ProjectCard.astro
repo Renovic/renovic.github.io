@@ -49,10 +49,10 @@ const firstImage = carouselImages[0];
         {carouselImages.length > 1 && (
         <>
             <button class="carousel-button carousel-prev" type="button" aria-label={`Previous ${name} image`}>
-            <TriangleArrowLeft class="triangle-arrow" aria-hidden="true" width={14} height={16} />
+            <TriangleArrowLeft class="triangle-arrow" aria-hidden="true" width={8} height={10} />
             </button>
             <button class="carousel-button carousel-next" type="button" aria-label={`Next ${name} image`}>
-            <TriangleArrowRight class="triangle-arrow" aria-hidden="true" width={14} height={16} />
+            <TriangleArrowRight class="triangle-arrow" aria-hidden="true" width={8} height={10} />
             </button>
             <div class="carousel-indicators" role="tablist" aria-label={`${name} gallery`}>
             {carouselImages.map((_, index) => (
@@ -446,8 +446,8 @@ const firstImage = carouselImages[0];
 
     .triangle-arrow {
         display: block;
-        width: 14px;
-        height: 16px;
+        width: 12px;
+        height: 14px;
         filter: invert(1);
     }
 
